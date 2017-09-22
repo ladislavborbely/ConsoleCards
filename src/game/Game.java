@@ -106,25 +106,29 @@ public class Game {
 				System.out.println("No more cards in deck!");
 			}
 		} else {
-			System.out.println(player.getName() + ": enought!");
+			System.out.println(player.getName() + " - has enought.");
 		}
 	}
 
 	private boolean humanPlayerTurn() {
-		String input;
-		System.out.print("Your turn -> Press 1 to add a card, 0 to keep current hand: ");
-		input = sc.nextLine();
-		switch (input) {
-		case "1":
-			return true;
-		case "0":
+		if (player1.getLastChoice() == false) {
 			return false;
-		default:
-			System.out.println("Invalid input! press 1 or 0.");
-			humanPlayerTurn();
-			break;
+		} else {
+			String input;
+			System.out.print("Your turn -> Press 1 to add a card, 0 to keep current hand: ");
+			input = sc.nextLine();
+			switch (input) {
+			case "1":
+				return true;
+			case "0":
+				return false;
+			default:
+				System.out.println("Invalid input! press 1 or 0.");
+				humanPlayerTurn();
+				break;
+			}
+			return false;
 		}
-		return false;
 	}
 
 	private boolean aiPlayerTurn() {
